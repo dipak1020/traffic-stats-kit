@@ -1,0 +1,34 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+
+# Video datasets & temporary processing artifacts
+*.mp4
+*.avi
+*.mkv
+*.ts
+*.h264
+*.h265
+out/
+tmp/
+temp/
+.DS_Store
+
+# Test & coverage
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
