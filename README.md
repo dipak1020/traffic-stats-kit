@@ -4,11 +4,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![License: CC BY 4.0](https://img.shields.io/badge/Docs-CC%20BY%204.0-lightgrey.svg)](LICENSE-DOCS)
 [![Compute: Offline CPU](https://img.shields.io/badge/Compute-Offline%20CPU%20%28Sub--12W%29-success.svg)](#)
-[![ATOME Certified](https://img.shields.io/badge/ATOME%20Paraguay-Certified%20Services-emerald.svg)](docs/ATOME_Certificate_Professional_Services_Dipak_Kumar.pdf)
+[![Validation: 4 Gates](https://img.shields.io/badge/Validation-4%20Engineering%20Gates-emerald.svg)](#)
 
 Turn fixed-camera CCTV and DVR footage into an auditable, civil-engineering-grade traffic survey: per-vehicle timeline, directionality, vehicle classification, hourly volume, headway distribution, occupancy, and a photograph of every counted vehicle. **Runs entirely offline on CPU with zero network calls and zero telemetry leaks.**
 
-Originally developed and field-deployed for **ATOME Paraguay S.A.E.** on ~170 hours of roadside Hikvision DVR footage from the Villeta industrial corridor in Paraguay (**11,693 vehicles over 8 days**, six with complete 24-hour coverage), then generalized into an agentic, camera-agnostic framework.
+Field-tested on over 170 hours of continuous roadside Hikvision DVR footage (**11,693 vehicles over 8 days**, six with complete 24-hour coverage), engineered as a camera-agnostic, offline framework.
+
 
 ```
 ffmpeg  →  OpenCV background subtraction  →  tracking  →  optional YOLO  →  PDF / DOCX / CSV
@@ -79,17 +80,6 @@ $$t_{\text{midpoint}} = \frac{t_{\text{dawn}} + t_{\text{dusk}}}{2}$$
 $$\Delta t_{\text{RTC}} = t_{\text{midpoint}} - t_{\text{solar\_noon}}(\phi, \lambda, \text{date})$$
 
 
----
-
-## Professional Certification (ATOME Paraguay S.A.E.)
-
-This software pipeline and methodology was delivered by **Dipak Kumar** for **ATOME Paraguay S.A.E.** in connection with the Villeta Green Fertiliser Project.
-
-*   **Official Certificate of Professional Services (PDF):** [`docs/ATOME_Certificate_Professional_Services_Dipak_Kumar.pdf`](docs/ATOME_Certificate_Professional_Services_Dipak_Kumar.pdf)
-*   **Certificate Preview:** [`docs/ATOME_Certificate_Dipak_Kumar.png`](docs/ATOME_Certificate_Dipak_Kumar.png)
-*   **Issuing Entity:** ATOME Paraguay S.A.E. (World Trade Center, Tower 3, 15th Floor, Asunción, Paraguay)
-*   **Signatory:** Juan Pablo Nogués, Country Manager
-*   **Attested Scope:** CCTV audiovisual processing using FFmpeg, OpenCV, and YOLO; consolidation of traffic by date, time, vehicle category, and travel direction; peak-hour volume analysis; and technical vehicle traffic count reporting.
 
 ---
 

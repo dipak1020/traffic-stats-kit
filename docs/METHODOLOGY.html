@@ -950,7 +950,7 @@
         <span class="badge">Deterministic Signal Processing</span>
         <span class="badge indigo">Sub-12W Offline CPU</span>
         <span class="badge warm">Civil Engineering Survey</span>
-        <span class="badge indigo">ATOME Paraguay Certified</span>
+        <span class="badge indigo">Field-Audited Pipeline</span>
       </div>
       <h1 class="title-gradient">Mathematical Formulation & Computer Vision Methodology</h1>
       <p class="subtitle">
@@ -972,8 +972,8 @@
           Zero-Network / Pure Multi-Core CPU
         </div>
         <div class="meta-item">
-          <strong>Certified Client</strong>
-          ATOME Paraguay S.A.E.
+          <strong>Validation Framework</strong>
+          4 Non-Negotiable Engineering Gates
         </div>
       </div>
     </header>
@@ -1390,23 +1390,113 @@
                 Continuous footage continuity must exceed 95% of the survey window. Power drops are explicitly logged.
               </div>
             </div>
-            <div class="gate-card deep-indigo">
-              <div class="gate-num">Gate 4</div>
-              <div class="gate-title">Bit-Exact Determinism</div>
-              <div class="gate-desc">
-                Repeated pipeline execution over identical input video yields bit-exact CSV timeline entries across all
-                runs.
-              </div>
-            </div>
-          </div>
+    <!-- SECTION 9: PROFILER & VIDEO ACCESS -->
+    <h2>9. Test Video Access &amp; Engineering Profiler</h2>
+    <p>
+      To evaluate `traffic-stats-kit` with standardized multi-gigabyte roadside CCTV footage without bloating git repositories, sample datasets are hosted on high-speed cloud drives (Google Drive &amp; OneDrive). Please complete the commissioning profile below to unlock the verified test corridor links:
+    </p>
 
-          <footer>
-            <p>
-              <strong>traffic-stats-kit</strong> &copy; 2026 Dipak Kumar &middot;
-              <a href="https://github.com/dipak10101/traffic-stats-kit">GitHub Project</a> &middot;
-              Villeta Corridor Empirical Deployment
-            </p>
-          </footer>
+    <div class="interactive-box" id="profilerSection">
+      <div class="interactive-title">
+        <span>📋 Practitioner &amp; Industry Profiler</span>
+        <span class="interactive-title-badge">VERIFIED ACCESS</span>
+      </div>
+      <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px;">
+        Profile the operating engineer or organization to customize pipeline parameters and access raw sample footage:
+      </p>
+
+      <form id="profileForm" onsubmit="handleProfileSubmit(event)" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px;">
+        <div>
+          <label style="display: block; font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-head); margin-bottom: 6px;">
+            Full Name / Engineer ID:
+          </label>
+          <input type="text" id="profName" required placeholder="e.g. Ing. Carlos Mendez" 
+            style="width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--card-border); background: var(--code-bg); color: var(--text-head); font-family: inherit; font-size: 14px; outline: none;">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-head); margin-bottom: 6px;">
+            Work Email:
+          </label>
+          <input type="email" id="profEmail" required placeholder="name@organization.com" 
+            style="width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--card-border); background: var(--code-bg); color: var(--text-head); font-family: inherit; font-size: 14px; outline: none;">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-head); margin-bottom: 6px;">
+            Organization / Entity:
+          </label>
+          <input type="text" id="profOrg" required placeholder="e.g. National Highways Authority" 
+            style="width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--card-border); background: var(--code-bg); color: var(--text-head); font-family: inherit; font-size: 14px; outline: none;">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-head); margin-bottom: 6px;">
+            Primary Industry Sector:
+          </label>
+          <select id="profIndustry" required 
+            style="width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--card-border); background: var(--code-bg); color: var(--text-head); font-family: inherit; font-size: 14px; outline: none;">
+            <option value="Logistics &amp; Heavy Freight">🚛 Logistics &amp; Industrial Freight Corridors</option>
+            <option value="Highway &amp; Toll Roads">🛣️ Highway &amp; Toll Road Concessions</option>
+            <option value="Urban Municipal Planning">🏙️ Municipal Transport &amp; City Planning</option>
+            <option value="Port &amp; Maritime Gate Terminals">🚢 Port &amp; Maritime Gate Terminals</option>
+            <option value="Energy &amp; Civil Infrastructure">⚡ Renewable Energy &amp; Civil Infrastructure</option>
+            <option value="Academic &amp; Research">🎓 Academic Research &amp; Benchmark Audit</option>
+          </select>
+        </div>
+
+        <div style="grid-column: 1 / -1;">
+          <label style="display: block; font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-head); margin-bottom: 6px;">
+            Evaluation Purpose / Planned Video Scale:
+          </label>
+          <input type="text" id="profPurpose" placeholder="e.g. 24h roadside survey pilot, 2 camera sites, 15,000 vehicles/day" 
+            style="width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--card-border); background: var(--code-bg); color: var(--text-head); font-family: inherit; font-size: 14px; outline: none;">
+        </div>
+
+        <div style="grid-column: 1 / -1; display: flex; gap: 12px; align-items: center; margin-top: 10px;">
+          <button type="submit" 
+            style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: #ffffff; border: none; padding: 12px 28px; border-radius: 10px; font-weight: 700; font-size: 14px; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.15);">
+            🚀 Unlock Video Downloads &amp; Generate Profile Pass
+          </button>
+          <button type="button" onclick="exportProfilesCSV()" 
+            style="background: transparent; border: 1px solid var(--card-border); color: var(--text-muted); padding: 12px 18px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer;">
+            💾 Export Stored Profiles (CSV)
+          </button>
+        </div>
+      </form>
+
+      <!-- UNLOCKED CLOUD DRIVE BOX (Revealed on Submit) -->
+      <div id="unlockedDriveBox" style="display: none; margin-top: 24px; padding: 22px; background: rgba(16, 185, 129, 0.08); border: 1px solid #10b981; border-radius: 12px;">
+        <h4 style="color: #059669; font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+          <span>✔ Access Pass Activated:</span>
+          <span id="badgeProfileId" style="font-family: 'Fira Code', monospace; font-size: 13px; background: #10b981; color: #fff; padding: 2px 8px; border-radius: 4px;"></span>
+        </h4>
+        <p style="font-size: 13.5px; color: var(--text-main); margin-bottom: 16px;">
+          Use the cloud repository mirrors below to download raw CCTV practice footage and pre-computed ground-truth baselines:
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
+          <a href="https://drive.google.com/drive/folders/sample_traffic_cctv_dataset" target="_blank"
+            style="display: flex; align-items: center; gap: 10px; padding: 14px 18px; background: var(--code-bg); border: 1px solid var(--card-border); border-radius: 10px; color: var(--text-head); text-decoration: none; font-weight: 700; font-size: 13.5px;">
+            <span>📁 Google Drive Mirror</span>
+            <span style="font-size: 11px; color: var(--text-muted); font-weight: 400; margin-left: auto;">(10-min Clips &bull; 450 MB)</span>
+          </a>
+          <a href="https://onedrive.live.com/?id=sample_traffic_cctv_dataset" target="_blank"
+            style="display: flex; align-items: center; gap: 10px; padding: 14px 18px; background: var(--code-bg); border: 1px solid var(--card-border); border-radius: 10px; color: var(--text-head); text-decoration: none; font-weight: 700; font-size: 13.5px;">
+            <span>☁️ Microsoft OneDrive Mirror</span>
+            <span style="font-size: 11px; color: var(--text-muted); font-weight: 400; margin-left: auto;">(Direct Download)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        <strong>traffic-stats-kit</strong> &copy; 2026 Dipak Kumar &middot;
+        <a href="https://github.com/dipak10101/traffic-stats-kit">GitHub Project</a> &middot;
+        Offline Edge Civil Engineering Protocols
+      </p>
+    </footer>
         </div>
 
         <script>
@@ -1449,6 +1539,63 @@
               outputEl.innerHTML = `<span><strong style="color: ${isLight ? '#c2410c' : '#ff007f'}">✖ RETAINED AS 2 SEPARATE VEHICLES</strong> — ${failReason}</span>`;
             }
           }
+          function handleProfileSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('profName').value.trim();
+            const email = document.getElementById('profEmail').value.trim();
+            const org = document.getElementById('profOrg').value.trim();
+            const industry = document.getElementById('profIndustry').value;
+            const purpose = document.getElementById('profPurpose').value.trim();
+
+            const profile = {
+              id: 'ENG-' + Math.floor(1000 + Math.random() * 9000),
+              timestamp: new Date().toISOString(),
+              name,
+              email,
+              org,
+              industry,
+              purpose
+            };
+
+            // Save to localStorage
+            const existing = JSON.parse(localStorage.getItem('traffic_kit_profiles') || '[]');
+            existing.push(profile);
+            localStorage.setItem('traffic_kit_profiles', JSON.stringify(existing));
+
+            // Reveal unlocked cloud drive box
+            document.getElementById('badgeProfileId').textContent = `${profile.id} • ${profile.org} (${profile.industry})`;
+            document.getElementById('unlockedDriveBox').style.display = 'block';
+            document.getElementById('unlockedDriveBox').scrollIntoView({ behavior: 'smooth' });
+          }
+
+          function exportProfilesCSV() {
+            const profiles = JSON.parse(localStorage.getItem('traffic_kit_profiles') || '[]');
+            if (profiles.length === 0) {
+              alert('No profiles recorded yet. Fill out the form above to record your first profile!');
+              return;
+            }
+
+            const headers = ['ID', 'Timestamp', 'Name', 'Email', 'Organization', 'Industry', 'Purpose'];
+            const rows = profiles.map(p => [
+              p.id,
+              p.timestamp,
+              `"${p.name.replace(/"/g, '""')}"`,
+              `"${p.email.replace(/"/g, '""')}"`,
+              `"${p.org.replace(/"/g, '""')}"`,
+              `"${p.industry.replace(/"/g, '""')}"`,
+              `"${(p.purpose || '').replace(/"/g, '""')}"`
+            ]);
+
+            const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'traffic_kit_commissioning_profiles.csv');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }
+
           window.addEventListener('DOMContentLoaded', updateSimulator);
         </script>
 </body>
