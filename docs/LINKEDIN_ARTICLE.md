@@ -67,39 +67,31 @@ The quantity **H(x)** defines the **local optical scale of the roadway**. Every 
 
 > **Tolerance_normalized(x) = γ · H(x)**
 
-Whether a motorcycle passes on the far curb or a heavy truck passes on the near lane, the detection rules remain mathematically invariant to camera perspective.
+Much as railroad rails provide an intrinsic geometric ruler along a track regardless of perspective depth, the optical band height H(x) serves as the scene's self-calibrating physical baseline. By measuring objects in local road units rather than raw pixels, a distant truck and a foreground sedan are evaluated on an identical, scale-invariant footing.
 
 ---
 
-### 3. Why Gaussian Mixture Models Fail at Red Lights
+### 3. The Ground Reference: Reconstructing Clean Asphalt from Video
 
-Many standard computer vision packages rely on Gaussian Mixture Models (GMM) with dynamic learning rates (α) for background subtraction. In fluid, highway-speed traffic, GMMs appear effective. 
+To accurately detect vehicles, the system must establish what the empty road looks like. On an active traffic corridor, however, vehicles are continuously passing through the frame, and the roadway is rarely vacant.
 
-However, consider what happens when traffic queues form at a red light or bottleneck:
-• A line of cars comes to a complete standstill for 90 seconds.
-• With a standard learning rate α = 0.005, the GMM gradually absorbs the stationary vehicles into its background model.
-• When the green light turns and vehicles accelerate away, the system registers "ghost" negative blobs where the cars used to be, corrupting downstream counts for minutes.
-
-Our approach replaces dynamic learning rates with **Temporal Median Asphalt Modeling**:
+Rather than attempting to capture an empty road frame by chance, the system reconstructs the pristine asphalt baseline directly from moving traffic using a robust statistical property: **the temporal median**.
 
 > **B(x, y) = median_t { I(x, y, t) }**
 
-By sampling 60 to 120 uniformly spaced frames across a temporal window, the median operator guarantees that as long as vehicles occupy a given patch of road for less than 50% of the sample duration, the true asphalt intensity is mathematically recovered with zero vehicle ghosting. Stopped traffic is never memorized.
+By calculating the median pixel intensity across 60 to 120 uniformly spaced sample frames, transient foreground vehicles dissolve mathematically. Because moving vehicles occupy any specific patch of asphalt for only a brief fraction of the temporal window, the statistical median naturally isolates the unmoving pavement below—recovering a clean, shadow-free asphalt baseline without ghosting artifacts.
 
 ---
 
 ### 4. Eliminating False Triggers: The Chronological Two-Line Gate
 
-A single virtual tripwire across a road is notoriously fragile:
-• A utility pole shadow swinging in an afternoon gust breaks the wire repeatedly.
-• Passing cloud edges trigger false counts.
-• High-beam headlights trigger the line seconds before the physical bumper arrives.
+A single virtual tripwire across a road is inherently vulnerable to environmental noise: utility pole shadows sway in afternoon gusts, passing clouds create momentary luminance shifts, and high-beam headlights trigger the line seconds before the physical vehicle arrives.
 
-To eliminate these artifacts without resorting to deep learning, we implement a **Chronological Dual-Line Verification Protocol**:
+To eliminate these artifacts deterministically, we enforce a **Chronological Dual-Line Verification Protocol**:
 
 > **Pass_valid ⟺ exists t1, t2 such that x(t1) = x_count, x(t2) = x_verify, and t2 > t1**
 
-A valid passage requires an optical mass to break the Counting Line at t1, and subsequently break the Verification Line at t2. Oscillating shadows fail this condition because they reverse direction or cross both lines simultaneously.
+This dual-line requirement functions as a directional physical turnstile. A valid passage requires an optical mass to break the Counting Line at t1, and subsequently break the Verification Line at t2. Wind-swayed shadows and illumination ripples fail this test because they oscillate across boundaries or strike both lines simultaneously; only an actual body with forward momentum can fulfill the ordered condition t1 < t2.
 
 Furthermore, the signed displacement Δx = x(t2) − x(t1) deterministically resolves travel direction:
 • **Δx > 0 ⟹ Left-to-Right (LR)**
@@ -111,23 +103,14 @@ Furthermore, the signed displacement Δx = x(t2) − x(t1) deterministically res
 
 One of the most persistent failure modes in automated traffic counting is the **articulated freight truck**.
 
-When a tractor pulls a 53-foot semi-trailer, there is a physical gap above the fifth wheel where the roadway behind the vehicle is visible. Under oblique CCTV angles:
-1. Standard bounding-box detectors register the cab as Vehicle 1.
-2. The trailer body is registered as Vehicle 2.
-3. The survey reports two consecutive vehicles traveling at 60 km/h with an impossible headway of 0.35 seconds.
+When a tractor pulls a 53-foot semi-trailer, the physical gap above the fifth wheel reveals the asphalt behind the cab. Under oblique CCTV angles, standard bounding-box detectors register the cab and trailer body as two separate vehicles traveling at identical speeds with an impossible headway of 0.35 seconds.
 
-Many software packages attempt to fix this with "post-hoc timing merges"—if two vehicles are recorded within 0.5 seconds, merge them. However, on congested corridors, this blindly merges two separate, tailgating passenger cars.
-
-The correct civil engineering solution is **in-frame spatial coupling**:
+Before a crossing record is generated, the tracker inspects the mechanical relationship of adjacent blobs within the same frame:
 
 > **Δx_gap = |x1 − x2| − (w1 + w2)/2 ≤ 0.45 · H(x)**  
 > **Δy_contact = |y1_ground − y2_ground| ≤ 0.15 · H(x)**
 
-Before a pass timestamp is ever generated, the tracker inspects the physical relation of the two blobs in the frame:
-• Do both blobs share identical pavement grade contact (y_bottom)?
-• Is the optical gap between them smaller than physical fifth-wheel hitch clearances (0.45 · H(x))?
-
-If both conditions hold, the cab and trailer are welded into a single unified entity in the frame.
+Do both components share the same pavement tire-contact line (y_bottom), and is their in-frame separation smaller than physical fifth-wheel hitch clearances? If both hold, the tractor and trailer are welded into a single unified commercial vehicle in the frame, eliminating artificial double-counts at the source.
 
 ---
 
