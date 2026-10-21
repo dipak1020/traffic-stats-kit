@@ -157,7 +157,7 @@ When software respects those physical realities, counting traffic becomes a stra
 
 • **GitHub Repository:** https://github.com/dipak10101/traffic-stats-kit  
 • **Full Mathematical Formulation:** See `docs/METHODOLOGY.html` and `docs/ARTICLE.html`  
-• **Sample CCTV Video & Datasets (Google Drive):** To download the sample calibration video clips and verified benchmark CSVs, complete the quick Practitioner & Industry Profiler in `docs/METHODOLOGY.html` (Section 9) to unlock the high-speed Google Drive repository mirror.
+• **Sample CCTV Video & Datasets (Google Drive):** [Download Camera A27 Excerpts & Benchmark Suite](https://drive.google.com/drive/folders/19WZarf0nnM5d9DlePg2Dy0LOZM7RJs-p?usp=share_link) (Includes daytime, peak, dusk, and night road clips, ground-truth CSVs, and audit sheets &bull; 365 MB).
 • **Agentic AI Replication Guide:** See `docs/AGENTIC_AI_REPLICATION.md`
 
 ---

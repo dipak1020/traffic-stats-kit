@@ -21,26 +21,33 @@ What the demo validates:
 
 ---
 
-## 2. Cloud Sample Dataset (Google Drive & OneDrive)
+## 2. Cloud Sample Dataset (Google Drive)
 
-### What to Place in Your Shared Cloud Drive:
-Because GitHub restricts files over 100MB, keep a curated sample folder in Google Drive or OneDrive with:
+🔗 **Official Cloud Mirror:** [Google Drive Verification Dataset (365 MB)](https://drive.google.com/drive/folders/19WZarf0nnM5d9DlePg2Dy0LOZM7RJs-p?usp=share_link)
+
+Because GitHub restricts single files over 100MB, the curated sample folder is hosted on Google Drive:
 
 ```
 Sample_Traffic_Dataset/
-├── 01_Daylight_Corridor_10min.mp4     # Standard daytime sample (10 min, ~250 MB)
-├── 02_Nighttime_Corridor_10min.mp4    # Nighttime headlights & glare sample (10 min, ~250 MB)
-├── expected_outputs/                  # Pre-computed verification benchmarks
-│   ├── timeline.csv                   # Verified row-per-vehicle ground truth
-│   ├── buckets.csv                    # Hourly volumes & Peak Hour Factor
-│   └── contact_sheet.png              # Audit contact sheet
-└── README_QUICKSTART.txt              # Command-line test instructions
+├── 01_Real_CCTV_Corridor_Footage/
+│   ├── A27_20260831122920.mp4          (60 MB — Morning daylight)
+│   ├── A27_20260831193236.mp4          (91 MB — Afternoon peak flow)
+│   ├── A27_20260831224837.mp4          (131 MB — Dusk day/night transition)
+│   ├── A27_20260831233637.mp4          (79 MB — Night headlights)
+│   └── real_audit_outputs/             (contact_sheet.png, timeline.csv, buckets.csv, gates.txt)
+├── 02_Calibrated_Benchmark_Clips/
+│   ├── CAM01_20260301080000.mp4 + truth CSV
+│   ├── CAM01_20260301120000.mp4 + truth CSV
+│   ├── CAM01_20260301173000.mp4 + truth CSV
+│   ├── CAM01_20260301200000.mp4 + truth CSV
+│   └── benchmark_outputs/              (SCORE.md, contact_sheet.png, timeline.csv)
+└── README_QUICKSTART.txt               (1-command replication instructions)
 ```
 
 ### Who Uses This Cloud Link:
-* **Infrastructure Clients & Highway Operators:** To test the offline CPU engine against their own video feeds.
+* **Infrastructure Clients & Highway Operators:** To test the offline CPU engine against real and calibrated footage.
 * **Consulting Engineers & Survey Teams:** To verify that the software delivers the exact expected CSV and contact sheet outputs.
-* **Prospective Partners & Recruiters:** To inspect the empirical accuracy and data quality without cloning gigabytes of video into git.
+* **Prospective Partners & Recruiters:** To inspect the empirical accuracy and data quality without cloning hundreds of megabytes of video into git.
 
 ---
 
