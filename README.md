@@ -44,18 +44,6 @@ In civil engineering, an unverified number is worse than no number at all. Every
 
 ---
 
-## 🏛️ System Architecture & Workflow
-
-The pipeline couples geometric perspective normalization with physical ground-contact rules, multi-stage signal processing, and deterministic validation:
-
-<div align="center">
-
-<img src="docs/flowchart_light.png" alt="System Architecture & Processing Flowchart" width="100%" style="border-radius: 12px; border: 1px solid #e1e4e8;" />
-
-</div>
-
----
-
 ## 📐 Mathematical Foundations & First Principles
 
 `traffic-stats-kit` rejects opaque black boxes in favor of geometric discipline and physical constraints:
