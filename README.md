@@ -60,7 +60,7 @@ $$\mathrm{Tolerance}_{\mathrm{norm}}(x) = \gamma \cdot H(x)$$
 ### 2. Temporal Median Asphalt Baseline
 Rather than hoping to catch an empty road by chance, the pristine asphalt reference $\mathcal{B}(x, y)$ is extracted directly from active traffic using the statistical temporal median across uniformly sampled frames $\mathcal{S}$:
 
-$$\mathcal{B}(x, y) = \operatorname{median}_{t \in \mathcal{S}} \big[ \mathcal{I}(x, y, t) \big]$$
+$$\mathcal{B}(x, y) = \mathrm{median}_{t \in \mathcal{S}} \big[ \mathcal{I}(x, y, t) \big]$$
 
 $$\mathcal{D}(x, y, t) = \big| \mathcal{I}(x, y, t) - \mathcal{B}(x, y) \big|$$
 
@@ -71,7 +71,7 @@ A single tripwire triggers on tree shadows, swaying wires, and headlight reflect
 
 $$\mathrm{Pass}_{\mathrm{valid}} \iff \exists \, (t_1 < t_2) : \quad x(t_1) = x_{\mathrm{count}} \quad \land \quad x(t_2) = x_{\mathrm{verify}}$$
 
-$$\mathrm{Direction} = \operatorname{sgn}\big(x(t_2) - x(t_1)\big) = \begin{cases} \text{Left-to-Right (LR)}, & x(t_2) > x(t_1) \\ \text{Right-to-Left (RL)}, & x(t_2) < x(t_1) \end{cases}$$
+$$\mathrm{Direction} = \mathrm{sgn}\big(x(t_2) - x(t_1)\big) = \begin{cases} \text{Left-to-Right (LR)}, & x(t_2) > x(t_1) \\ \text{Right-to-Left (RL)}, & x(t_2) < x(t_1) \end{cases}$$
 
 ### 4. Scale-Normalized In-Frame Articulated Coupling
 Tractor-trailers frequently split into two blobs because asphalt shows through above the fifth wheel. We couple adjacent blobs in-frame sharing tire-contact grade:
