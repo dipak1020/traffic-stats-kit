@@ -45,7 +45,7 @@ Empirically validated over 170 hours of continuous field CCTV footage (11,693 ve
 Practical measurement requires numbers you can trust, audit, and explain from first principles.
 
 Open-source documentation and mathematical methodology:
-https://github.com/dipak10101/traffic-stats-kit
+https://github.com/dipak1020/traffic-stats-kit
 
 #HumanInTheLoop #TrafficStudies #FirstPrinciples #DataIntegrity #EdgeComputing #ComputerVision
 ```
@@ -70,7 +70,7 @@ A traffic survey is fundamentally about measuring physical objects traveling acr
 Field-tested on 170+ hours of continuous CCTV footage (11,693 vehicles) in Paraguay.
 
 Code and methodology:
-https://github.com/dipak10101/traffic-stats-kit
+https://github.com/dipak1020/traffic-stats-kit
 
 #HumanInTheLoop #CivilEngineering #TrafficStudies #FirstPrinciples #DataIntegrity #EdgeComputing
 ```

@@ -1,6 +1,6 @@
 # traffic-stats-kit (cctv-traffic-count)
 
-[![CI](https://github.com/dipak10101/traffic-stats-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/dipak10101/traffic-stats-kit/actions)
+[![CI](https://github.com/dipak1020/traffic-stats-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/dipak1020/traffic-stats-kit/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![License: CC BY 4.0](https://img.shields.io/badge/Docs-CC%20BY%204.0-lightgrey.svg)](LICENSE-DOCS)
 [![Compute: Offline CPU](https://img.shields.io/badge/Compute-Offline%20CPU%20%28Sub--12W%29-success.svg)](#)
@@ -134,7 +134,7 @@ brew install ffmpeg python@3.12       # macOS
 # sudo apt-get install ffmpeg python3-venv  # Ubuntu/Debian
 
 # Clone repository and create local environment
-git clone https://github.com/dipak10101/traffic-stats-kit.git
+git clone https://github.com/dipak1020/traffic-stats-kit.git
 cd traffic-stats-kit
 python3 -m venv .venv && source .venv/bin/activate
 
@@ -205,4 +205,4 @@ A pipeline reports numbers whether or not they mean anything. The 4 gates decide
 **Dipak Kumar**  
 Computational Modeling & Simulation Specialist  
 Asunción, Paraguay  
-GitHub: [@dipak10101](https://github.com/dipak10101)
+GitHub: [@dipak1020](https://github.com/dipak1020)

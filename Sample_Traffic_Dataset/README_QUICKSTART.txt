@@ -2,7 +2,7 @@
   traffic-stats-kit: Real Project CCTV Dataset & Verification Package
 ====================================================================
 Author: Dipak Kumar
-Repository: https://github.com/dipak10101/traffic-stats-kit
+Repository: https://github.com/dipak1020/traffic-stats-kit
 
 This package contains the field-recorded CCTV road survey footage from
 Camera A27 (Villeta, Paraguay), along with the calibrated benchmark
