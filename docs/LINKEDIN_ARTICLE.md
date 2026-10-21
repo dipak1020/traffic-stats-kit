@@ -153,12 +153,20 @@ When software respects those physical realities, counting traffic becomes a stra
 
 ---
 
-### Open-Source Repository & Verification Datasets
+### Open-Source Repository & Project Kit
 
-• **GitHub Repository:** https://github.com/dipak10101/traffic-stats-kit  
-• **Full Mathematical Formulation:** See `docs/METHODOLOGY.html` and `docs/ARTICLE.html`  
-• **Sample CCTV Video & Datasets (Google Drive):** [Download Camera A27 Excerpts & Benchmark Suite](https://drive.google.com/drive/folders/19WZarf0nnM5d9DlePg2Dy0LOZM7RJs-p?usp=share_link) (Includes daytime, peak, dusk, and night road clips, ground-truth CSVs, and audit sheets &bull; 365 MB).
-• **Agentic AI Replication Guide:** See `docs/AGENTIC_AI_REPLICATION.md`
+The complete codebase, documentation, and mathematical models for **traffic-stats-kit** are open-source and available on GitHub:
+
+🔗 **GitHub Repository:**  
+**https://github.com/dipak10101/traffic-stats-kit**
+
+Everything runs entirely on local multi-core CPU using standard OpenCV and NumPy, requiring zero cloud dependencies or external GPUs. You can clone the repository and run the end-to-end verification pipeline directly:
+
+```bash
+git clone https://github.com/dipak10101/traffic-stats-kit.git
+cd traffic-stats-kit
+bash run_on_mac.sh
+```
 
 ---
 
