@@ -176,6 +176,6 @@ When software respects those physical realities, you do not need a 300-watt serv
 ### Project Repository & Documentation
 
 * **Independent Repository:** [`traffic-stats-kit`](https://github.com/dipak1020/traffic-stats-kit)
-* **Interactive Mathematical Paper (KaTeX):** [`docs/METHODOLOGY.html`](docs/METHODOLOGY.html)
+* **Technical Documentation:** [`docs/ARTICLE.html`](docs/ARTICLE.html)
 * **Autonomous Replication Guide:** [`docs/AGENTIC_AI_REPLICATION.md`](docs/AGENTIC_AI_REPLICATION.md)
 * **License:** MIT (Code) / CC BY 4.0 (Documentation)

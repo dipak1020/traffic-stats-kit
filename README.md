@@ -12,7 +12,7 @@
 [![Validation: 4 Gates](https://img.shields.io/badge/Validation-4%20Engineering%20Gates-0366d6.svg)](#)
 [![Dataset: Google Drive](https://img.shields.io/badge/Dataset-Google%20Drive%20Mirror%20%28365%20MB%29-8a3ffc.svg)](https://drive.google.com/drive/folders/19WZarf0nnM5d9DlePg2Dy0LOZM7RJs-p?usp=share_link)
 
-**[📖 Interactive Methodology Paper](docs/METHODOLOGY.html)** • **[📰 Long-form Engineering Essay](docs/ARTICLE.html)** • **[💼 LinkedIn Article](docs/LINKEDIN_ARTICLE.md)** • **[📁 Real Video Dataset](https://drive.google.com/drive/folders/19WZarf0nnM5d9DlePg2Dy0LOZM7RJs-p?usp=share_link)**
+**[📄 Technical Documentation](docs/ARTICLE.html)** • **[💼 LinkedIn Post](docs/LINKEDIN_POST.md)** • **[📁 Verification Dataset (Google Drive)](https://drive.google.com/drive/folders/19WZarf0nnM5d9DlePg2Dy0LOZM7RJs-p?usp=share_link)**
 
 ---
 
@@ -27,6 +27,18 @@ Field-validated over **170+ hours of continuous roadside Hikvision DVR recording
 ```
 Raw CCTV Stream  ──►  1D Virtual Loops  ──►  Temporal Median Asphalt  ──►  Two-Line Turnstile  ──►  Visual Proof & CSVs
 ```
+
+---
+
+## 🗺️ System Architecture & Engineering Methodology
+
+<div align="center">
+
+![The Agentic Technique & Human-in-the-Loop Vision Pipeline](docs/agent_technique_map.png)
+
+*Figure: Publication-grade architecture map in high-contrast light theme outlining the closed iteration loop, machine/human division of labour, the 4 operational axioms, and defensive vision techniques.*
+
+</div>
 
 ---
 
