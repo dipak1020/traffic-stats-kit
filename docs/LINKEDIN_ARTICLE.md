@@ -6,7 +6,7 @@
 # First Principles in Traffic Video Analytics: Why Civil Engineering Demands Restraint Over Black Boxes
 
 ### **ARTICLE SUBTITLE:**
-How perspective-invariant geometry and deterministic signal processing replace 250W cloud GPUs with sub-12W offline edge computing.
+How perspective-invariant geometry, temporal median asphalt, and deterministic verification deliver auditable traffic counts on local hardware.
 
 ---
 
@@ -22,20 +22,18 @@ Upload `docs/agent_technique_map.png` or `docs/flowchart_light_orange_indigo_179
 
 ---
 
-In transportation engineering, few tasks are more fundamental than the traffic survey. Before a bridge is widened, an industrial bypass is funded, or an intersection is timed, engineers must answer a deceptively simple question: 
+In transportation engineering, few tasks are more fundamental than the traffic survey. Before a bridge is widened, an industrial bypass is funded, or an intersection is timed, engineers must answer a clear question: 
 
 **How many vehicles passed this cross-section of road, in which direction, at what time, and with what headway?**
 
-In recent years, the technology sector has offered an increasingly complex answer to this question. Modern traffic monitoring pitches frequently arrive wrapped in high-wattage buzzwords: multi-billion-parameter neural networks, continuous 5G telemetry streaming, cloud GPU clusters consuming hundreds of watts, and end-to-end "black box" deep learning frameworks.
+Measuring roadway flow accurately requires addressing real roadside conditions:
+• Cameras oscillate in gusts of wind.
+• Tree shadows sway across the pavement.
+• Rain turns headlights into specular glare.
+• Articulated tractor-trailers have gaps that look like two separate vehicles.
+• Vehicle queues at red lights come to a complete standstill.
 
-Yet, on the roadside, real-world conditions tell a different story:
-• Cameras oscillate in high winds.
-• Tree shadows dance across pavement.
-• Rain turns headlights into blinding specular glare.
-• A 250-watt GPU card overheats inside an unventilated roadside cabinet.
-• Most critically: when a cloud-based deep learning model reports 14,200 vehicles, **no engineer can inspect why or where it made mistakes**, because the system provides no auditable physical trail.
-
-Practical civil engineering does not require more computational complexity. It requires **restraint, geometric discipline, and adherence to physical first principles**.
+To achieve high reliability without black boxes, this methodology relies on **restraint, geometric discipline, and adherence to physical first principles**.
 
 ---
 
@@ -164,11 +162,11 @@ To ensure that this methodology is reproducible on any personal computer or edge
 
 ### Conclusion: Restraint as an Engineering Principle
 
-In an era where technology often defaults to brute force—more parameters, larger GPUs, and deeper clouds—there is immense power in returning to physical first principles.
+In engineering, true elegance is found when the methodology matches the simplicity of the physical problem.
 
 A camera is a sensor of light. A road is a geometric plane. A vehicle is an optical mass traveling in time.
 
-When software respects those physical realities, you do not need a 300-watt server or a cloud subscription to count traffic. You need only an inexpensive CPU, clean mathematics, and the disciplined judgment of a human in the loop.
+When software respects those physical realities, counting traffic becomes a straightforward, reliable task of geometry, clean mathematics, and the disciplined judgment of a human in the loop.
 
 ---
 
@@ -181,4 +179,4 @@ When software respects those physical realities, you do not need a 300-watt serv
 
 ---
 
-*What are your thoughts on deterministic edge processing vs. cloud deep learning for civil infrastructure? I invite engineers and transportation planners to share their experiences in the comments below.*
+*What are your thoughts on deterministic, first-principles approaches to civil infrastructure monitoring? I invite engineers and transportation planners to share their perspectives in the comments below.*

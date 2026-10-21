@@ -7,11 +7,9 @@
 ```markdown
 "Look at the thing itself. What is it in its own nature? Strip it bare of its reputation and see what it actually does." — Marcus Aurelius, Meditations
 
-When stripped of technical buzzwords, a traffic survey is not a problem of artificial intelligence or cloud computing. It is simply a physical reality: vehicles of varying mass traveling along a fixed asphalt corridor over time.
+A traffic survey is fundamentally a physical observation: vehicles of varying mass traveling along a fixed asphalt corridor over time.
 
-Too often, modern monitoring systems over-complicate this basic physical observation. They introduce heavy GPU hardware, complex black-box neural networks that hallucinate under rain and glare, and continuous cloud data streams that leak roadside privacy.
-
-A simpler, more grounded approach is to measure physical signals directly, deterministically, and locally on modest hardware:
+By measuring physical signals directly and deterministically on local hardware, traffic counting becomes simple, reliable, and auditable:
 
 ┌────────────────────────────────────────────────────────┐
 │              PHYSICAL SIGNAL FLOWCHART                 │
@@ -36,8 +34,8 @@ A simpler, more grounded approach is to measure physical signals directly, deter
 │    └── A human in the loop verifies every vehicle crop │
 └────────────────────────────────────────────────────────┘
 
-The Core Philosophy:
-• Observe with restraint: Run entirely offline on standard CPU (<12W). No external network calls, no cloud telemetry.
+The Core Methodology:
+• Observe with restraint: Runs entirely offline on standard CPUs (<12W) with zero network dependency.
 • Measure what is physical: Anchor spatial thresholds to the road’s visible band height rather than arbitrary pixel sizes.
 • Reject false complexity: Two physical lines crossed in chronological order filter out tree shadows, swaying wires, and headlight reflections.
 • Human judgment remains primary: Before numbers enter a report, a human in the loop inspects a tiled visual contact sheet of every detected vehicle.
@@ -59,9 +57,9 @@ https://github.com/dipak10101/traffic-stats-kit
 ```markdown
 "Look at the thing itself. What is it in its own nature?" — Marcus Aurelius
 
-A traffic survey is not about artificial intelligence or cloud infrastructure. It is simply measuring physical objects traveling across a roadway over time.
+A traffic survey is fundamentally about measuring physical objects traveling across a roadway over time.
 
-Rather than relying on heavy GPUs and opaque neural networks, traffic-stats-kit measures roadside video through deterministic signal processing on standard CPUs (<12W):
+`traffic-stats-kit` measures roadside video through deterministic signal processing on standard CPUs (<12W):
 
 1. Geometry: The optical road height H(x) sets physical perspective scale.
 2. Background: Median asphalt sampling never memorizes stopped vehicles.
