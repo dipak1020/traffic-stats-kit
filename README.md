@@ -12,7 +12,7 @@
 [![Validation: 4 Gates](https://img.shields.io/badge/Validation-4%20Engineering%20Gates-0366d6.svg)](#)
 [![Dataset: Google Drive](https://img.shields.io/badge/Dataset-Google%20Drive%20Mirror%20%28365%20MB%29-8a3ffc.svg)](https://drive.google.com/drive/folders/19WZarf0nnM5d9DlePg2Dy0LOZM7RJs-p?usp=share_link)
 
-**[📄 Technical Documentation](docs/ARTICLE.html)** • **[💼 LinkedIn Post](docs/LINKEDIN_POST.md)** • **[📁 Verification Dataset (Google Drive)](https://drive.google.com/drive/folders/19WZarf0nnM5d9DlePg2Dy0LOZM7RJs-p?usp=share_link)**
+**[📄 Technical Documentation](docs/ARTICLE.html)** • **[📁 Verification Dataset (Google Drive)](https://drive.google.com/drive/folders/19WZarf0nnM5d9DlePg2Dy0LOZM7RJs-p?usp=share_link)**
 
 ---
 
