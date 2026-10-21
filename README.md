@@ -44,13 +44,13 @@ In civil engineering, an unverified number is worse than no number at all. Every
 
 ---
 
-## 🏛️ System Architecture
+## 🏛️ System Architecture & Workflow
 
-The pipeline couples geometric perspective normalization with physical ground-contact rules and multi-agent coordination:
+The pipeline couples geometric perspective normalization with physical ground-contact rules, multi-stage signal processing, and deterministic validation:
 
 <div align="center">
 
-![System Architecture & Generic Method Mindmap](docs/approach_mindmap.png)
+<img src="docs/flowchart_light.png" alt="System Architecture & Processing Flowchart" width="100%" style="border-radius: 12px; border: 1px solid #e1e4e8;" />
 
 </div>
 
