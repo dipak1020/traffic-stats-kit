@@ -194,12 +194,6 @@
       color: var(--accent-bronze);
       margin-top: 10px;
     }
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--accent-bronze);
-      margin-top: 8px;
-    }
 
     .table-box {
       margin: 30px 0;
@@ -289,42 +283,31 @@
       <cite>&mdash; Marcus Aurelius, Meditations, Book III</cite>
     </div>
 
-    <!-- SENIOR EXECUTIVE BRIEFING -->
-    <div style="margin: 32px 0 40px; padding: 24px 28px; background: rgba(140, 98, 57, 0.06); border: 1px solid var(--border); border-left: 4px solid var(--accent-bronze); border-radius: 8px;">
-      <h3 style="margin-top: 0; font-size: 17px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent-bronze); font-family: 'Plus Jakarta Sans', sans-serif;">Executive Summary: For Senior Directors &amp; Project Leaders</h3>
-      <p style="font-size: 15px; line-height: 1.6; margin-bottom: 12px; color: #2e2925;">
-        Traffic surveys underpin critical infrastructure investments, from highway capacity designs to signal optimization. This article presents a transparent, deterministic approach to traffic video analytics rooted directly in <strong>optical geometry and physical ground contact rules</strong>.
+    <!-- THE CORE OBJECTIVE -->
+    <div style="margin: 32px 0 40px; padding: 24px 28px; background: rgba(140, 98, 57, 0.05); border: 1px solid var(--border); border-left: 4px solid var(--accent-bronze); border-radius: 8px;">
+      <h3 style="margin-top: 0; font-size: 16px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent-bronze); font-family: 'Plus Jakarta Sans', sans-serif;">The Engineering Objective</h3>
+      <p style="font-size: 16px; line-height: 1.6; margin-bottom: 12px; color: #2e2925;">
+        Before a highway bridge is widened, an industrial bypass is funded, or an intersection is timed, transportation engineers must answer four concrete questions: <strong>How many vehicles passed this cross-section of road, in which direction, at what exact time, and with what headway?</strong>
       </p>
       <p style="font-size: 15px; line-height: 1.6; margin-bottom: 0; color: #2e2925;">
-        By measuring vehicles through scale-normalized band geometry, temporal median asphalt modeling, and chronological dual-line verification, the methodology produces auditable, mathematically reproducible traffic counts on standard local hardware. Every passage is paired with an automated <strong>Visual Audit Contact Sheet</strong>, providing complete transparency for human reviewers.
+        This article outlines a direct, 6-step deterministic methodology to derive those answers from standard roadside CCTV/DVR footage on an office laptop (&lt;12W CPU) with 100% human-auditable visual proof.
       </p>
     </div>
 
-    <h2>Prologue: The Foundations of Measurement</h2>
+    <h2>1. The Physical Signal: Ground Contact &amp; Optical Mass</h2>
     <p>
-      In transportation engineering, few tasks are more fundamental than the traffic survey. Before a highway bridge is widened, an industrial bypass is funded, or a signalized intersection is timed, engineers must answer a clear question: <strong>How many vehicles passed this cross-section of road, in which direction, at what time, and with what headway?</strong>
+      If we strip away computer vision jargon, what is a vehicle crossing a roadside camera’s field of view? It is not an abstract probability vector. It is a <strong>physical optical mass with positive ground contact moving across a bounded pavement plane over time</strong>.
     </p>
-    <p>
-      This paper details how those answers can be derived simply, reliably, and transparently from standard fixed CCTV video by respecting the physical laws of geometry and motion.
-    </p>
-    <blockquote>
-      "Practical engineering does not require unnecessary complexity. It requires restraint, geometric discipline, and adherence to first principles."
-    </blockquote>
-
-    <h2>1. The Physical Signal: What is a Vehicle on a Road?</h2>
-    <p>
-      If we strip away computer vision jargon, what is a vehicle crossing a roadside camera’s field of view? It is not an abstract "bounding box class probability vector." It is a <strong>physical optical mass with positive ground contact moving across a bounded pavement plane over time</strong>.
-    </p>
-    <p>From this first principle, three physical truths emerge:</p>
+    <p>From this first principle, three physical constraints govern the entire pipeline:</p>
     <ul>
-      <li><strong>The Road Has Geometry:</strong> A roadway is physically bounded by near and far edges. Perspective distortion dictates that an object far away occupies fewer vertical pixels than an identical object nearby.</li>
-      <li><strong>The Asphalt is Static, Traffic is Dynamic:</strong> Pavement color and texture remain stable over minutes, while vehicles arrive, occlude, and depart.</li>
-      <li><strong>Motion is Directional and Chronological:</strong> A vehicle traveling eastward must break line A before line B. A tree shadow oscillating in the wind swings across both lines simultaneously or erratically.</li>
+      <li><strong>The Road Has Bounded Geometry:</strong> Perspective distortion dictates that distant objects occupy fewer vertical pixels than identical objects nearby.</li>
+      <li><strong>The Asphalt is Static, Traffic is Dynamic:</strong> Pavement color remains stable over minutes, while vehicles arrive, occlude, and depart.</li>
+      <li><strong>Motion is Directional and Chronological:</strong> A vehicle traveling eastbound must break line A before line B. Oscillating shadows swing across both lines simultaneously or erratically.</li>
     </ul>
 
-    <h2>2. Perspective Invariance: The Local Optical Band Height $H(x)$</h2>
+    <h2>2. Step 1: Perspective-Invariant Optical Scale $H(x)$</h2>
     <p>
-      Standard cameras view highways under oblique perspective angles. A compact sedan near the camera may appear 180 pixels tall, while a large freight truck in the background appears only 65 pixels tall. Traditional systems attempt to bridge this with arbitrary minimum/maximum pixel area thresholds—leading inevitably to missed detections in the distance and false triggers in the foreground.
+      Standard cameras view highways under oblique perspective angles. A compact sedan near the camera may appear 180 pixels tall, while a large freight truck in the background appears only 65 pixels tall. Fixed pixel area thresholds inevitably fail across varying distances.
     </p>
     
     <div class="formula-callout">
@@ -333,7 +316,7 @@
     </div>
 
     <p>
-      The quantity $H(x)$ defines the <strong>local optical scale of the roadway</strong>. Every spatial threshold in the pipeline—from minimum blob area and centroid tracking tolerances to morphological kernel dimensions—is defined not in arbitrary pixels, but as a scale-normalized fraction of $H(x)$:
+      The quantity $H(x)$ defines the <strong>local optical scale of the roadway</strong>. Every spatial threshold in the pipeline—from minimum blob area and tracking centroid tolerance to morphological kernel dimensions—is defined as a scale-normalized fraction of $H(x)$:
     </p>
 
     <div class="formula-callout">
@@ -342,15 +325,12 @@
     </div>
 
     <p>
-      Much as railroad rails provide an intrinsic geometric ruler along a track regardless of perspective depth, the optical band height $H(x)$ serves as the scene's self-calibrating physical baseline. By measuring objects in local road units rather than raw pixels, a distant truck and a foreground sedan are evaluated on an identical, scale-invariant footing.
+      Much as railroad rails provide an intrinsic geometric ruler along a track regardless of perspective depth, $H(x)$ serves as the self-calibrating physical baseline. A distant truck and a foreground sedan are evaluated on an identical, scale-invariant footing.
     </p>
 
-    <h2>3. The Ground Reference: Reconstructing Clean Asphalt from Video</h2>
+    <h2>3. Step 2: The Ground Reference: Reconstructing Clean Asphalt</h2>
     <p>
-      To accurately detect vehicles, the system must establish what the empty road looks like. On an active traffic corridor, however, vehicles are continuously passing through the frame, and the roadway is rarely vacant.
-    </p>
-    <p>
-      Rather than attempting to capture an empty road frame by chance, the system reconstructs the pristine asphalt baseline directly from moving traffic using a robust statistical property: <strong>the temporal median</strong>.
+      To detect vehicles without training neural networks, the system must know what the empty road looks like. On an active corridor, moving traffic rarely leaves the pavement vacant. We reconstruct the pristine asphalt baseline directly from moving traffic using the <strong>temporal median</strong>:
     </p>
 
     <div class="formula-callout">
@@ -359,15 +339,12 @@
     </div>
 
     <p>
-      By calculating the median pixel intensity across 60 to 120 uniformly spaced sample frames, transient foreground vehicles dissolve mathematically. Because moving vehicles occupy any specific patch of asphalt for only a brief fraction of the temporal window, the statistical median naturally isolates the unmoving pavement below—recovering a clean, shadow-free asphalt baseline without ghosting artifacts.
+      By calculating the median pixel intensity across 60 to 120 uniformly spaced sample frames, transient foreground vehicles dissolve mathematically. Moving vehicles occupy any given pixel for only a small fraction of the window, allowing the median to isolate unmoving asphalt without ghosting artifacts.
     </p>
 
-    <h2>4. Eliminating False Triggers: The Chronological Two-Line Gate</h2>
+    <h2>4. Step 3: Eliminating False Triggers: The Chronological Two-Line Gate</h2>
     <p>
-      A single virtual tripwire across a road is inherently vulnerable to environmental noise: telephone pole shadows sway in afternoon gusts, passing clouds create momentary luminance shifts, and high-beam headlights trigger the line seconds before the physical vehicle arrives.
-    </p>
-    <p>
-      To eliminate these artifacts deterministically, we enforce a <strong>Chronological Dual-Line Verification Protocol</strong>:
+      A single virtual tripwire across a road triggers on swaying utility poles, passing clouds, and headlight reflections. To eliminate environmental noise deterministically, we enforce a <strong>Chronological Dual-Line Verification Protocol</strong>:
     </p>
 
     <div class="formula-callout">
@@ -376,15 +353,12 @@
     </div>
 
     <p>
-      This dual-line requirement functions as a directional physical turnstile. A valid passage requires an optical mass to break the Counting Line at $t_1$, and subsequently break the Verification Line at $t_2$. Wind-swayed shadows and illumination ripples fail this test because they oscillate across boundaries or strike both lines simultaneously; only an actual body with forward momentum can fulfill the ordered condition $t_1 < t_2$.
+      A valid passage requires an optical mass to break the Counting Line at $t_1$, and subsequently break the Verification Line at $t_2$. Wind-swayed shadows and illumination ripples fail this test because they oscillate across boundaries or strike both lines simultaneously; only an actual body with forward momentum fulfills $t_1 < t_2$. The signed displacement $\Delta x = x(t_2) - x(t_1)$ simultaneously resolves travel direction (LR vs RL).
     </p>
 
-    <h2>5. Solving the "Ghost Semi-Trailer": In-Frame Articulated Coupling</h2>
+    <h2>5. Step 4: Solving the "Ghost Semi-Trailer": In-Frame Articulated Coupling</h2>
     <p>
-      One of the most persistent failure modes in automated traffic counting is the <strong>articulated freight truck</strong>. When a tractor pulls a 53-foot semi-trailer, the physical gap above the fifth wheel reveals the asphalt behind the cab.
-    </p>
-    <p>
-      Under oblique CCTV angles, standard bounding-box detectors register the cab and trailer body as two separate vehicles traveling at identical speeds with an impossible headway of $0.35\,\text{seconds}$.
+      When a tractor pulls a 53-foot semi-trailer, the physical gap above the fifth wheel reveals asphalt behind the cab. Standard detectors register the cab and trailer as two separate vehicles traveling at identical speeds with an impossible headway of $0.35\,\text{s}$.
     </p>
 
     <div class="formula-callout">
@@ -393,27 +367,35 @@
     </div>
 
     <p>
-      Before a crossing record is generated, the tracker inspects the mechanical relationship of adjacent blobs within the same frame: do both components share the same pavement tire-contact line ($y_{\text{bottom}}$), and is their separation smaller than physical fifth-wheel hitch clearances? If both hold, the tractor and trailer are welded into a single unified commercial vehicle in the frame, eliminating artificial double-counts at the source.
+      Before a record is logged, the tracker inspects adjacent blobs: do both components share the same pavement ground line ($y_{\text{bottom}}$), and is their in-frame gap within physical hitch clearances? If both hold, the tractor and trailer are welded into a single commercial vehicle, eliminating double-counts at the source.
     </p>
 
-    <h2>6. The 4 Non-Negotiable Engineering Validation Gates</h2>
+    <h2>6. Step 5: Day-to-Night Continuity: Morphological Headlight Pairing</h2>
     <p>
-      A pipeline will always report numbers, whether or not those numbers represent reality. In civil engineering, an unverified number is worse than no number at all. <code>traffic-stats-kit</code> enforces 4 automated validation gates:
+      At night, a vehicle ceases to be a single solid silhouette and splits into two isolated beams of light. Under standard daytime morphology, these appear as two small distinct objects.
+    </p>
+    <p>
+      The system continuously monitors the median asphalt luma. When illumination drops below the twilight threshold ($\tau_{\text{night}} \approx 75$), the processing kernel switches adaptively from a compact daytime box ($0.18 \times 0.13\,H(x)$) to a horizontally elongated nocturnal ellipse ($0.49 \times 0.18\,H(x)$). This wide horizontal kernel physically bridges the two headlight beams across the carriageway, maintaining continuous vehicle detection through midnight.
+    </p>
+
+    <h2>7. Step 6: The 4 Non-Negotiable Engineering Validation Gates</h2>
+    <p>
+      In civil engineering, an unverified number is unacceptable. <code>traffic-stats-kit</code> enforces 4 automated validation gates before any dataset is certified:
     </p>
 
     <div class="table-box">
       <table>
         <tr><th>Gate</th><th>Engineering Criterion</th><th>Safety &amp; Integrity Purpose</th></tr>
-        <tr><td><strong>1. Visual Audit</strong></td><td>100% of tiles on <code>contact_sheet.png</code></td><td>Human reviewer inspects crop of every counted vehicle</td></tr>
-        <tr><td><strong>2. Headway Floor</strong></td><td>$h_i < 1.0\,\text{s}$ must be $\le 5\%$</td><td>Flags unmerged tractor-trailer combinations</td></tr>
-        <tr><td><strong>3. Coverage Continuity</strong></td><td>Valid footage $> 95\%$</td><td>Ensures peak hour volume is not corrupted by gaps</td></tr>
-        <tr><td><strong>4. Bit Determinism</strong></td><td>Exact CSV row matching</td><td>Guarantees mathematical reproducibility across runs</td></tr>
+        <tr><td><strong>1. Visual Audit</strong></td><td>100% of tiles on <code>contact_sheet.png</code></td><td>Human reviewer inspects photographic crop of every counted vehicle</td></tr>
+        <tr><td><strong>2. Headway Floor</strong></td><td>$h_i < 1.0\,\text{s}$ must be $\le 5\%$</td><td>Flags unmerged tractor-trailer combinations and shadow splits</td></tr>
+        <tr><td><strong>3. Coverage Continuity</strong></td><td>Valid footage $> 95\%$</td><td>Ensures peak hour volume is not corrupted by recorder gaps</td></tr>
+        <tr><td><strong>4. Bit Determinism</strong></td><td>Exact CSV row matching</td><td>Guarantees mathematical reproducibility across hardware runs</td></tr>
       </table>
     </div>
 
     <div style="margin: 28px 0; text-align: center;">
       <img src="contact_sheet.png" alt="Audit Contact Sheet" style="max-width: 100%; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 4px 14px rgba(0,0,0,0.06);" />
-      <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">Figure: Visual Contact Sheet generated by the automated test run (each tile represents a verified vehicle crossing).</div>
+      <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">Figure: Automated Visual Contact Sheet generated from real Camera A27 field excerpts (each tile represents a verified vehicle crossing).</div>
     </div>
 
     <h2>Epilogue: Restraint as an Engineering Principle</h2>
