@@ -147,7 +147,7 @@ We enforce **4 automated validation gates** that must be satisfied before any su
 #### Why the Human-in-the-Loop Gate is Paramount
 No algorithm can audit itself with complete neutrality. The centerpiece of this framework is `contact_sheet.png`—an automatically generated, tiled photographic matrix showing the highest-contrast crop of every single vehicle counted during the survey.
 
-An engineer can visually scan 500 vehicle tiles in under 30 seconds. If an oscillating tree branch or camera shake generated false counts, it is immediately obvious to the human eye, preserving the professional integrity of the final survey.
+An auditor or human reviewer can visually scan 500 vehicle tiles in under 30 seconds. If an oscillating tree branch or camera shake generated false counts, it is immediately obvious to the human eye, preserving the professional integrity of the final survey.
 
 ---
 
@@ -168,14 +168,15 @@ In an era where technology often defaults to brute force—more parameters, larg
 
 A camera is a sensor of light. A road is a geometric plane. A vehicle is an optical mass traveling in time.
 
-When software respects those physical realities, you do not need a 300-watt server or a cloud subscription to count traffic. You need only an inexpensive CPU, clean mathematics, and the disciplined judgment of an engineer in the loop.
+When software respects those physical realities, you do not need a 300-watt server or a cloud subscription to count traffic. You need only an inexpensive CPU, clean mathematics, and the disciplined judgment of a human in the loop.
 
 ---
 
-### Open-Source Repository & Documentation
+### Open-Source Repository & Verification Datasets
 
 • **GitHub Repository:** https://github.com/dipak10101/traffic-stats-kit  
-• **Technical Methodology & Equations:** See `docs/METHODOLOGY.html` and `docs/APPROACH.md`  
+• **Full Mathematical Formulation:** See `docs/METHODOLOGY.html` and `docs/ARTICLE.html`  
+• **Sample CCTV Video & Datasets (Google Drive):** To download the sample calibration video clips and verified benchmark CSVs, complete the quick Practitioner & Industry Profiler in `docs/METHODOLOGY.html` (Section 9) to unlock the high-speed Google Drive repository mirror.
 • **Agentic AI Replication Guide:** See `docs/AGENTIC_AI_REPLICATION.md`
 
 ---

@@ -1,0 +1,2 @@
+bucket_start,total,LR,RL,cumulative,pct_of_period,mean_headway_s,composition
+2026-03-01 08:00,14,9,5,14,100.0,4.3,car=5 pickup_van=4 motorcycle=2 truck_2axle=2 truck_3axle_plus=1

@@ -204,6 +204,5 @@ A pipeline reports numbers whether or not they mean anything. The 4 gates decide
 
 **Dipak Kumar**  
 Computational Modeling & Simulation Specialist  
-M.Tech in Hydrology & Civil Engineering, IIT Roorkee  
 Asunción, Paraguay  
 GitHub: [@dipak10101](https://github.com/dipak10101)

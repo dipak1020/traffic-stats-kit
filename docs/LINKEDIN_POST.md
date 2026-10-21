@@ -33,23 +33,23 @@ A simpler, more grounded approach is to measure physical signals directly, deter
 │          │                                             │
 │          ▼                                             │
 │ 5. Human-in-the-Loop Audit                             │
-│    └── An engineer verifies every vehicle crop         │
+│    └── A human in the loop verifies every vehicle crop │
 └────────────────────────────────────────────────────────┘
 
 The Core Philosophy:
 • Observe with restraint: Run entirely offline on standard CPU (<12W). No external network calls, no cloud telemetry.
 • Measure what is physical: Anchor spatial thresholds to the road’s visible band height rather than arbitrary pixel sizes.
 • Reject false complexity: Two physical lines crossed in chronological order filter out tree shadows, swaying wires, and headlight reflections.
-• Human judgment remains primary: Before numbers enter a report, an engineer inspects a tiled visual contact sheet of every detected vehicle.
+• Human judgment remains primary: Before numbers enter a report, a human in the loop inspects a tiled visual contact sheet of every detected vehicle.
 
 Empirically validated over 170 hours of continuous field CCTV footage (11,693 vehicles over 8 days) in the Villeta industrial corridor, Paraguay.
 
-Practical civil engineering requires measurement you can trust, audit, and explain from first principles.
+Practical measurement requires numbers you can trust, audit, and explain from first principles.
 
 Open-source documentation and mathematical methodology:
 https://github.com/dipak10101/traffic-stats-kit
 
-#HumanInTheLoop #TrafficEngineering #CivilEngineering #TransportationPlanning #FirstPrinciples #DataIntegrity #EdgeComputing
+#HumanInTheLoop #TrafficStudies #FirstPrinciples #DataIntegrity #EdgeComputing #ComputerVision
 ```
 
 ---
@@ -67,7 +67,7 @@ Rather than relying on heavy GPUs and opaque neural networks, traffic-stats-kit 
 2. Background: Median asphalt sampling never memorizes stopped vehicles.
 3. Verification: Crossing two distinct lines sequentially eliminates false counts from camera shake and shadows.
 4. Coupling: Tractor-trailer combinations are merged in-frame based on shared wheel grade.
-5. Human-in-the-Loop: An engineer visually audits 100% of vehicle crops on a single contact sheet before publishing.
+5. Human-in-the-Loop: A human in the loop visually audits 100% of vehicle crops on a single contact sheet before publishing.
 
 Field-tested on 170+ hours of continuous CCTV footage (11,693 vehicles) in Paraguay.
 

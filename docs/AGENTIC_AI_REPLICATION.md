@@ -158,6 +158,6 @@ out/
 
 ## 6. Author & Civil Engineering Standards
 
-* **Author:** Dipak Kumar (M.Tech IIT Roorkee)
-* **Client Certification:** ATOME Paraguay S.A.E. (170h CCTV / 11,693 Vehicles)
+* **Author:** Dipak Kumar
+* **Field Provenance:** 170h Continuous CCTV Survey / 11,693 Vehicles (Villeta Corridor)
 * **Standards Adherence:** Highway Capacity Manual (HCM), AASHTO Green Book, offline Edge AI protocols.
