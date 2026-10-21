@@ -5,7 +5,7 @@
 ---
 
 > *"Look at the thing itself. What is it in its own nature? Strip it bare of its external reputation, its name, and the words used to describe it, and see what it actually does."*  
-> — **Marcus Aurelius, *Meditations*, Book III**
+> — **Marcus Aurelius, *Meditations***
 
 ---
 
