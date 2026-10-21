@@ -61,53 +61,53 @@ The pipeline couples geometric perspective normalization with physical ground-co
 `traffic-stats-kit` rejects opaque black boxes in favor of geometric discipline and physical constraints:
 
 ### 1. Perspective-Invariant Road Corridor & Optical Scale
-Given upper horizon boundary $\mathcal{P}_{\text{far}}$ and lower curb boundary $\mathcal{P}_{\text{near}}$, the local optical band height $H(x)$ serves as the scene's self-calibrating physical ruler:
+Given upper horizon boundary **P_far** and lower curb boundary **P_near**, the local optical band height **H(x)** serves as the scene's self-calibrating physical ruler:
 
-$$H(x) = y_{\text{near}}(x) - y_{\text{far}}(x)$$
+$$H(x) = y_{\mathrm{near}}(x) - y_{\mathrm{far}}(x)$$
 
 Every spatial threshold (bounding box tolerances, morphological kernels, coupling clearances) scales as a dimensionless fraction of $H(x)$:
 
-$$\text{Tolerance}_{\text{normalized}}(x) = \gamma \cdot H(x)$$
+$$\mathrm{Tolerance}_{\mathrm{norm}}(x) = \gamma \cdot H(x)$$
 
 ### 2. Temporal Median Asphalt Baseline
 Rather than hoping to catch an empty road by chance, the pristine asphalt reference $\mathcal{B}(x, y)$ is extracted directly from active traffic using the statistical temporal median across uniformly sampled frames $\mathcal{S}$:
 
-$$\mathcal{B}(x, y) = \text{median}_{t \in \mathcal{S}} \left\{ \mathcal{I}(x, y, t) \right\}$$
+$$\mathcal{B}(x, y) = \operatorname{median}_{t \in \mathcal{S}} \big[ \mathcal{I}(x, y, t) \big]$$
 
-$$\mathcal{D}(x, y, t) = \left| \mathcal{I}(x, y, t) - \mathcal{B}(x, y) \right|$$
+$$\mathcal{D}(x, y, t) = \big| \mathcal{I}(x, y, t) - \mathcal{B}(x, y) \big|$$
 
-$$\mathcal{M}(x, y, t) = \begin{cases} 1, & \mathcal{D}(x, y, t) \ge \tau_{\text{thresh}} \\ 0, & \mathcal{D}(x, y, t) < \tau_{\text{thresh}} \end{cases}$$
+$$\mathcal{M}(x, y, t) = \begin{cases} 1, & \mathcal{D}(x, y, t) \ge \tau_{\mathrm{thresh}} \\ 0, & \mathcal{D}(x, y, t) < \tau_{\mathrm{thresh}} \end{cases}$$
 
 ### 3. Chronological Two-Line Turnstile Gate
 A single tripwire triggers on tree shadows, swaying wires, and headlight reflections. We enforce chronological dual-line passage verification:
 
-$$\text{Pass}_{\text{valid}} \iff \exists \, (t_1 < t_2) : \quad x(t_1) = x_{\text{count}} \;\;\land\;\; x(t_2) = x_{\text{verify}}$$
+$$\mathrm{Pass}_{\mathrm{valid}} \iff \exists \, (t_1 < t_2) : \quad x(t_1) = x_{\mathrm{count}} \quad \land \quad x(t_2) = x_{\mathrm{verify}}$$
 
-$$\text{Direction} = \text{sgn}\left(x(t_2) - x(t_1)\right) = \begin{cases} \text{Left-to-Right (LR)}, & x(t_2) > x(t_1) \\ \text{Right-to-Left (RL)}, & x(t_2) < x(t_1) \end{cases}$$
+$$\mathrm{Direction} = \operatorname{sgn}\big(x(t_2) - x(t_1)\big) = \begin{cases} \text{Left-to-Right (LR)}, & x(t_2) > x(t_1) \\ \text{Right-to-Left (RL)}, & x(t_2) < x(t_1) \end{cases}$$
 
 ### 4. Scale-Normalized In-Frame Articulated Coupling
 Tractor-trailers frequently split into two blobs because asphalt shows through above the fifth wheel. We couple adjacent blobs in-frame sharing tire-contact grade:
 
-$$\Delta x_{\text{gap}} = |x_1 - x_2| - \frac{w_1 + w_2}{2} \le 0.45 \cdot H(x)$$
+$$\Delta x_{\mathrm{gap}} = |x_1 - x_2| - \frac{w_1 + w_2}{2} \le 0.45 \cdot H(x)$$
 
-$$\Delta y_{\text{contact}} = |y_{1,\text{ground}} - y_{2,\text{ground}}| \le 0.15 \cdot H(x)$$
+$$\Delta y_{\mathrm{contact}} = |y_{1,\mathrm{ground}} - y_{2,\mathrm{ground}}| \le 0.15 \cdot H(x)$$
 
 ### 5. Traffic Flow Parameters (HCM Standards)
-* **Time Headway:** $h_i = t_i - t_{i-1}$ (Automated double-count flag floor: $h_i < 1.0\,\text{s}$)
+* **Time Headway:** $h_i = t_i - t_{i-1}$ (Automated double-count flag floor: $h_i < 1.0\text{ s}$)
 * **Peak Hour Factor (PHF):**
 
-  $$\text{PHF} = \frac{V_{\text{hour}}}{4 \times V_{15,\max}}$$
+  $$\mathrm{PHF} = \frac{V_{\mathrm{hour}}}{4 \cdot V_{15,\max}}$$
 
 * **Spatial Occupancy Ratio:**
 
-  $$\rho_{\text{occ}} = \frac{\sum_{i=1}^N \Delta t_{\text{occupancy}, i}}{T_{\text{period}}} \times 100\%$$
+  $$\rho_{\mathrm{occ}} = \frac{\sum_{i=1}^N \Delta t_{\mathrm{occupancy}, i}}{T_{\mathrm{period}}} \times 100\%$$
 
 ### 6. Astronomical Solar Noon RTC Clock Recovery
 Roadside DVR internal clocks drift substantially. The astronomical time offset is recovered from true solar noon:
 
-$$t_{\text{midpoint}} = \frac{t_{\text{dawn}} + t_{\text{dusk}}}{2}$$
+$$t_{\mathrm{midpoint}} = \frac{t_{\mathrm{dawn}} + t_{\mathrm{dusk}}}{2}$$
 
-$$\Delta t_{\text{RTC}} = t_{\text{midpoint}} - t_{\text{solar-noon}}(\phi, \lambda, \text{date})$$
+$$\Delta t_{\mathrm{RTC}} = t_{\mathrm{midpoint}} - t_{\mathrm{solar}}(\phi, \lambda, \text{date})$$
 
 ---
 
