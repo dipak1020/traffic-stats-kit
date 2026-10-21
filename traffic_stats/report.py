@@ -104,7 +104,7 @@ def main(argv=None):
 
     exts = tuple(e.strip().lower() for e in args.ext.split(","))
     files = sorted(os.path.join(args.videos, f) for f in os.listdir(args.videos)
-                   if f.lower().endswith(exts))
+                   if f.lower().endswith(exts) and not f.startswith("."))
     if not files:
         print("no video files in %s" % args.videos, file=sys.stderr)
         return 1

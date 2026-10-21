@@ -1,0 +1,11 @@
+vehicles counted      22
+occupancy             19.5 %
+clock offset applied  -1 day, 20:10:00
+coverage              3.4 PARTIAL - label any peak as 'peak of available data'
+headway LR            PASS  {'>60 s': 6, '30-60 s': 2, '15-30 s': 1, '1-1.5 s': 1, '1.5-3 s': 1}
+headway RL            PASS  {'>60 s': 8, '3-6 s': 1}
+GAP  2026-08-31T12:34:20 -> 2026-08-31T19:32:36  (418 min)
+GAP  2026-08-31T19:37:36 -> 2026-08-31T22:48:37  (191 min)
+GAP  2026-08-31T22:56:37 -> 2026-08-31T23:36:37  (40 min)
+
+NOT REPORTED: speed, density. No distance anchor is set (Site.metres_per_band_height). See docs/APPROACH.md.

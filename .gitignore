@@ -23,6 +23,10 @@ ENV/
 *.h264
 *.h265
 out/
+out_mac/
+out_mac_real/
+samples/
+samples_real/
 tmp/
 temp/
 .DS_Store

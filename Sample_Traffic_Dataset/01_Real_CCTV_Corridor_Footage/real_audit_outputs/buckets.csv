@@ -1,0 +1,5 @@
+bucket_start,total,LR,RL,cumulative,pct_of_period,mean_headway_s,composition
+2026-08-31 08:00,5,3,2,5,19.2,41.8,pickup_van=2 car=1 motorcycle=1 truck_3axle_plus=1
+2026-08-31 15:00,15,8,7,20,57.7,21.0,pickup_van=6 car=5 motorcycle=2 truck_2axle=1 truck_3axle_plus=1
+2026-08-31 18:00,2,2,0,22,7.7,1.8,truck_2axle=1 unclassified_night=1
+2026-08-31 19:00,4,0,4,26,15.4,925.2,unclassified_night=4
