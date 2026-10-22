@@ -45,13 +45,13 @@ Standard cameras view highways under oblique perspective angles. A compact sedan
 
 `traffic-stats-kit` resolves this through a continuous geometric calibration:
 
-$$H(x) = y_{\text{near}}(x) - y_{\text{far}}(x)$$
+$$H(x) = y_{\mathrm{near}}(x) - y_{\mathrm{far}}(x)$$
 
-Where $\mathcal{P}_{\text{far}}$ and $\mathcal{P}_{\text{near}}$ represent the upper (horizon) and lower (curb) pavement boundary polylines across horizontal coordinate $x$.
+Where $\mathcal{P}_{\mathrm{far}}$ and $\mathcal{P}_{\mathrm{near}}$ represent the upper (horizon) and lower (curb) pavement boundary polylines across horizontal coordinate $x$.
 
 The quantity $H(x)$ defines the **local optical scale of the roadway**. Every single threshold in the pipeline—from minimum blob area and tracking centroid tolerance to morphological kernel dimensions and coupling clearances—is defined not in fixed pixels, but as a scale-normalized fraction of $H(x)$:
 
-$$\text{Tolerance}_{\text{normalized}}(x) = \gamma \cdot H(x)$$
+$$\mathrm{Tolerance}_{\mathrm{norm}}(x) = \gamma \cdot H(x)$$
 
 Whether a motorcycle passes on the far curb or a bus passes on the near lane, the detection rules remain mathematically invariant to camera perspective.
 
@@ -68,7 +68,7 @@ However, consider what happens when traffic queues form at a red light or bottle
 
 `traffic-stats-kit` replaces dynamic learning rates with **Temporal Median Asphalt Modeling**:
 
-$$\mathcal{B}(x, y) = \text{median}_{t \in \mathcal{S}} \Big\{ \mathcal{I}(x, y, t) \Big\}$$
+$$\mathcal{B}(x, y) = \mathrm{median}_{t \in \mathcal{S}} \Big\{ \mathcal{I}(x, y, t) \Big\}$$
 
 By sampling 60 to 120 uniformly spaced frames across a temporal window, the median operator guarantees that as long as vehicles occupy a given patch of road for less than 50% of the sample duration, the true asphalt intensity is mathematically recovered with zero vehicle ghosting. Stopped traffic is never memorized.
 
@@ -83,7 +83,7 @@ A single virtual tripwire across a road is notoriously fragile:
 
 To eliminate these artifacts without resorting to deep learning, we implement a **Chronological Dual-Line Verification Protocol**:
 
-$$\text{Pass}_{\text{valid}} \iff \exists \, t_1, t_2 \quad \text{such that} \quad x(t_1) = x_{\text{count}}, \; x(t_2) = x_{\text{verify}}, \; t_2 > t_1$$
+$$\mathrm{Pass}_{\mathrm{valid}} \iff \exists \, (t_1 < t_2) : \quad x(t_1) = x_{\mathrm{count}} \quad \land \quad x(t_2) = x_{\mathrm{verify}}$$
 
 A valid passage requires an optical mass to break the Counting Line at $t_1$, and subsequently break the Verification Line at $t_2$. Oscillating shadows fail this condition because they reverse direction or cross both lines simultaneously. Headlamp reflections fail because their spatial luminance distribution fails the ground-contact profile.
 
@@ -100,15 +100,15 @@ One of the most persistent failure modes in automated traffic counting is the **
 When a tractor pulls a 53-foot semi-trailer, there is a physical gap above the fifth wheel where the roadway behind the vehicle is visible. Under oblique CCTV angles:
 1. Standard bounding-box detectors register the cab as Vehicle 1.
 2. The trailer body is registered as Vehicle 2.
-3. The survey reports two consecutive vehicles traveling at 60 km/h with an impossible headway of $0.35\,\text{seconds}$.
+3. The survey reports two consecutive vehicles traveling at 60 km/h with an impossible headway of $0.35\,\text{s}$.
 
 Many software packages attempt to fix this with "post-hoc timing merges"—if two vehicles are recorded within 0.5 seconds, merge them. However, on congested corridors, this blindly merges two separate, tailgating passenger cars.
 
 The correct civil engineering solution is **in-frame spatial coupling**:
 
-$$\Delta x_{\text{gap}} = |x_1 - x_2| - \frac{w_1 + w_2}{2} \le 0.45 \cdot H(x)$$
+$$\Delta x_{\mathrm{gap}} = |x_1 - x_2| - \frac{w_1 + w_2}{2} \le 0.45 \cdot H(x)$$
 
-$$\Delta y_{\text{contact}} = |y_{1,\text{ground}} - y_{2,\text{ground}}| \le 0.15 \cdot H(x)$$
+$$\Delta y_{\mathrm{contact}} = |y_{1,\mathrm{ground}} - y_{2,\mathrm{ground}}| \le 0.15 \cdot H(x)$$
 
 Before a pass timestamp is ever generated, the tracker inspects the physical relation of the two blobs in the frame:
 * Do both blobs share the identical pavement grade contact ($y_{\text{bottom}}$)?

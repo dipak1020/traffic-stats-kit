@@ -60,35 +60,35 @@ All spatial thresholds (bounding box tolerances, vehicle widths, kernel sizes) a
 ### 3.2 Median Temporal Asphalt Background Model
 To reject stationary vehicles at red lights without memorization:
 
-$$\mathcal{B}(x, y) = \text{median}_{t \in \mathcal{S}} \Big\{ \mathcal{I}(x, y, t) \Big\}$$
+$$\mathcal{B}(x, y) = \mathrm{median}_{t \in \mathcal{S}} \Big\{ \mathcal{I}(x, y, t) \Big\}$$
 
 The foreground difference image $\mathcal{D}(x, y, t)$ and binary activation mask $\mathcal{M}(x, y, t)$:
 
 $$\mathcal{D}(x, y, t) = \big| \mathcal{I}(x, y, t) - \mathcal{B}(x, y) \big|$$
 
-$$\mathcal{M}(x, y, t) = \begin{cases} 1, & \mathcal{D}(x, y, t) \ge \tau_{\text{thresh}} \\ 0, & \mathcal{D}(x, y, t) < \tau_{\text{thresh}} \end{cases}$$
+$$\mathcal{M}(x, y, t) = \begin{cases} 1, & \mathcal{D}(x, y, t) \ge \tau_{\mathrm{thresh}} \\ 0, & \mathcal{D}(x, y, t) < \tau_{\mathrm{thresh}} \end{cases}$$
 
 ### 3.3 Two-Line Verification Protocol
 To eliminate false counts caused by tree shadows, camera oscillations, and stationary glare:
-* **Counting Line:** $x = x_{\text{count}}$
-* **Verification Line:** $x = x_{\text{verify}} = x_{\text{count}} \pm \Delta x$
+* **Counting Line:** $x = x_{\mathrm{count}}$
+* **Verification Line:** $x = x_{\mathrm{verify}} = x_{\mathrm{count}} \pm \Delta x$
 
 A trajectory $\mathcal{T} = \{(x_t, y_t)\}$ is registered as a verified vehicle passage if and only if:
 
-$$\text{Pass}_{\text{valid}} \iff \exists \, t_1, t_2 \quad \text{such that} \quad x(t_1) = x_{\text{count}}, \; x(t_2) = x_{\text{verify}}, \; t_2 > t_1$$
+$$\mathrm{Pass}_{\mathrm{valid}} \iff \exists \, (t_1 < t_2) : \quad x(t_1) = x_{\mathrm{count}} \quad \land \quad x(t_2) = x_{\mathrm{verify}}$$
 
 Direction is signed by trajectory displacement $\Delta x = x(t_2) - x(t_1)$:
 
-$$\text{Direction} = \begin{cases} \text{Left-to-Right (LR)}, & x(t_2) > x(t_1) \\ \text{Right-to-Left (RL)}, & x(t_2) < x(t_1) \end{cases}$$
+$$\mathrm{Direction} = \begin{cases} \text{Left-to-Right (LR)}, & x(t_2) > x(t_1) \\ \text{Right-to-Left (RL)}, & x(t_2) < x(t_1) \end{cases}$$
 
 ### 3.4 In-Frame Articulated Vehicle Merging
 Articulated semi-trailers frequently appear as two disconnected blobs (tractor cab and trailer body) due to the low-contrast gap above the fifth wheel. 
 
 Post-hoc timing merges are prone to merging two independent tailgating cars. Instead, `traffic-stats-kit` executes **in-frame spatial merging**:
 
-$$\Delta x_{\text{gap}} = |x_1 - x_2| - \frac{w_1 + w_2}{2} \le 0.45 \cdot H(x)$$
+$$\Delta x_{\mathrm{gap}} = |x_1 - x_2| - \frac{w_1 + w_2}{2} \le 0.45 \cdot H(x)$$
 
-$$\Delta y_{\text{contact}} = |y_{1,\text{ground}} - y_{2,\text{ground}}| \le 0.15 \cdot H(x)$$
+$$\Delta y_{\mathrm{contact}} = |y_{1,\mathrm{ground}} - y_{2,\mathrm{ground}}| \le 0.15 \cdot H(x)$$
 
 ### 3.5 Day / Night Adaptive Morphological Kernels
 * **Daylight:** Compact vertical-horizontal structuring element ($0.18 \cdot H(x) \times 0.13 \cdot H(x)$) preserving vehicle contours while rejecting overhead wiring.
@@ -97,16 +97,16 @@ $$\Delta y_{\text{contact}} = |y_{1,\text{ground}} - y_{2,\text{ground}}| \le 0.
 ### 3.6 Traffic Flow & Capacity Parameters (HCM)
 * **Time Headway:** $h_i = t_i - t_{i-1}$
 * **Peak Hour Factor:**
-  $$\text{PHF} = \frac{V_{\text{hour}}}{4 \times V_{15,\max}}$$
+  $$\mathrm{PHF} = \frac{V_{\mathrm{hour}}}{4 \times V_{15,\max}}$$
 * **Time Occupancy:**
-  $$\rho_{\text{occ}} = \frac{\sum_{i=1}^N \Delta t_{\text{occupancy}, i}}{T_{\text{period}}} \times 100\%$$
+  $$\rho_{\mathrm{occ}} = \frac{\sum_{i=1}^N \Delta t_{\mathrm{occupancy}, i}}{T_{\mathrm{period}}} \times 100\%$$
 
 ### 3.7 Solar Noon Clock Drift Correction
 When roadside DVR internal clocks drift or reset:
 
-$$t_{\text{midpoint}} = \frac{t_{\text{dawn}} + t_{\text{dusk}}}{2}$$
+$$t_{\mathrm{midpoint}} = \frac{t_{\mathrm{dawn}} + t_{\mathrm{dusk}}}{2}$$
 
-$$\Delta t_{\text{RTC}} = t_{\text{midpoint}} - t_{\text{solar\_noon}}(\phi, \lambda, \text{date})$$
+$$\Delta t_{\mathrm{RTC}} = t_{\mathrm{midpoint}} - t_{\mathrm{solar}}(\phi, \lambda, \text{date})$$
 
 This aligns camera timestamps with true astronomical local time without requiring GPS hardware.
 

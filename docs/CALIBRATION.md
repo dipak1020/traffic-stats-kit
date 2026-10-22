@@ -64,5 +64,5 @@ MY_SITE = Site(
 
 1. **Occluder Clearance:** `Site.__post_init__` enforces that `count_x` does not intersect any column interval defined in `occluders`.
 2. **Band Height Regularity:** The vertical distance between `near` and `far` must remain positive across the entire horizontal extent:
-   $$y_{\text{near}}(x) > y_{\text{far}}(x) \quad \forall x \in [0, \text{width}]$$
+   $$y_{\mathrm{near}}(x) > y_{\mathrm{far}}(x) \quad \forall x \in [0, \text{width}]$$
 3. **Verify Line Offset:** By default, `verify_x` is automatically placed at $x_{\text{count}} \pm 0.35 \cdot H(x_{\text{count}})$.
