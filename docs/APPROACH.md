@@ -60,13 +60,13 @@ All spatial thresholds (bounding box tolerances, vehicle widths, kernel sizes) a
 ### 3.2 Median Temporal Asphalt Background Model
 To reject stationary vehicles at red lights without memorization:
 
-$$\mathcal{B}(x, y) = \mathrm{median}_{t \in \mathcal{S}} \Big\{ \mathcal{I}(x, y, t) \Big\}$$
+$$\mathcal{B}(x, y) = \mathrm{median}_{t \in \mathcal{S}} \big[ \mathcal{I}(x, y, t) \big]$$
 
 The foreground difference image $\mathcal{D}(x, y, t)$ and binary activation mask $\mathcal{M}(x, y, t)$:
 
 $$\mathcal{D}(x, y, t) = \big| \mathcal{I}(x, y, t) - \mathcal{B}(x, y) \big|$$
 
-$$\mathcal{M}(x, y, t) = \begin{cases} 1, & \mathcal{D}(x, y, t) \ge \tau_{\mathrm{thresh}} \\ 0, & \mathcal{D}(x, y, t) < \tau_{\mathrm{thresh}} \end{cases}$$
+$$\mathcal{M}(x, y, t) = \begin{cases} 1, & \mathcal{D}(x, y, t) \ge \tau_{\mathrm{thresh}} \\ 0, & \mathcal{D}(x, y, t) \lt \tau_{\mathrm{thresh}} \end{cases}$$
 
 ### 3.3 Two-Line Verification Protocol
 To eliminate false counts caused by tree shadows, camera oscillations, and stationary glare:
@@ -75,11 +75,11 @@ To eliminate false counts caused by tree shadows, camera oscillations, and stati
 
 A trajectory $\mathcal{T} = \{(x_t, y_t)\}$ is registered as a verified vehicle passage if and only if:
 
-$$\mathrm{Pass}_{\mathrm{valid}} \iff \exists \, (t_1 < t_2) : \quad x(t_1) = x_{\mathrm{count}} \quad \land \quad x(t_2) = x_{\mathrm{verify}}$$
+$$\mathrm{Pass}_{\mathrm{valid}} \iff \exists \, (t_1 \lt t_2) : \quad x(t_1) = x_{\mathrm{count}} \quad \land \quad x(t_2) = x_{\mathrm{verify}}$$
 
 Direction is signed by trajectory displacement $\Delta x = x(t_2) - x(t_1)$:
 
-$$\mathrm{Direction} = \begin{cases} \text{Left-to-Right (LR)}, & x(t_2) > x(t_1) \\ \text{Right-to-Left (RL)}, & x(t_2) < x(t_1) \end{cases}$$
+$$\mathrm{Direction} = \begin{cases} \text{Left-to-Right (LR)}, & x(t_2) \gt x(t_1) \\ \text{Right-to-Left (RL)}, & x(t_2) \lt x(t_1) \end{cases}$$
 
 ### 3.4 In-Frame Articulated Vehicle Merging
 Articulated semi-trailers frequently appear as two disconnected blobs (tractor cab and trailer body) due to the low-contrast gap above the fifth wheel. 

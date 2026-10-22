@@ -12,7 +12,7 @@
 [![Validation: 4 Gates](https://img.shields.io/badge/Validation-4%20Engineering%20Gates-0366d6.svg)](#)
 [![Dataset: Google Drive](https://img.shields.io/badge/Dataset-Google%20Drive%20Mirror%20%28365%20MB%29-8a3ffc.svg)](https://drive.google.com/drive/folders/19WZarf0nnM5d9DlePg2Dy0LOZM7RJs-p?usp=share_link)
 
-**[📄 Technical Documentation](docs/ARTICLE.html)** • **[📁 Verification Dataset (Google Drive)](https://drive.google.com/drive/folders/19WZarf0nnM5d9DlePg2Dy0LOZM7RJs-p?usp=share_link)**
+**[📄 Technical Documentation](docs/ARTICLE.md)** • **[📁 Verification Dataset (Google Drive)](https://drive.google.com/drive/folders/19WZarf0nnM5d9DlePg2Dy0LOZM7RJs-p?usp=share_link)**
 
 ---
 
@@ -76,14 +76,14 @@ $$\mathcal{B}(x, y) = \mathrm{median}_{t \in \mathcal{S}} \big[ \mathcal{I}(x, y
 
 $$\mathcal{D}(x, y, t) = \big| \mathcal{I}(x, y, t) - \mathcal{B}(x, y) \big|$$
 
-$$\mathcal{M}(x, y, t) = \begin{cases} 1, & \mathcal{D}(x, y, t) \ge \tau_{\mathrm{thresh}} \\ 0, & \mathcal{D}(x, y, t) < \tau_{\mathrm{thresh}} \end{cases}$$
+$$\mathcal{M}(x, y, t) = \begin{cases} 1, & \mathcal{D}(x, y, t) \ge \tau_{\mathrm{thresh}} \\ 0, & \mathcal{D}(x, y, t) \lt \tau_{\mathrm{thresh}} \end{cases}$$
 
 ### 3. Chronological Two-Line Turnstile Gate
 A single tripwire triggers on tree shadows, swaying wires, and headlight reflections. We enforce chronological dual-line passage verification:
 
-$$\mathrm{Pass}_{\mathrm{valid}} \iff \exists \, (t_1 < t_2) : \quad x(t_1) = x_{\mathrm{count}} \quad \land \quad x(t_2) = x_{\mathrm{verify}}$$
+$$\mathrm{Pass}_{\mathrm{valid}} \iff \exists \, (t_1 \lt t_2) : \quad x(t_1) = x_{\mathrm{count}} \quad \land \quad x(t_2) = x_{\mathrm{verify}}$$
 
-$$\mathrm{Direction} = \mathrm{sgn}\big(x(t_2) - x(t_1)\big) = \begin{cases} \text{Left-to-Right (LR)}, & x(t_2) > x(t_1) \\ \text{Right-to-Left (RL)}, & x(t_2) < x(t_1) \end{cases}$$
+$$\mathrm{Direction} = \mathrm{sgn}\big(x(t_2) - x(t_1)\big) = \begin{cases} \text{Left-to-Right (LR)}, & x(t_2) \gt x(t_1) \\ \text{Right-to-Left (RL)}, & x(t_2) \lt x(t_1) \end{cases}$$
 
 ### 4. Scale-Normalized In-Frame Articulated Coupling
 Tractor-trailers frequently split into two blobs because asphalt shows through above the fifth wheel. We couple adjacent blobs in-frame sharing tire-contact grade:

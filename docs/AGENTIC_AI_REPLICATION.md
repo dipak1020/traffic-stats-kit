@@ -67,10 +67,10 @@ python -m traffic_stats check
 ### 1. Two-Line Trajectory Directionality
 To avoid false crossings from wind oscillations and shadows, the system requires an optical mass to break two lines chronologically:
 * **Counting Line:** $x = x_{\text{count}}$
-* **Verification Line:** $x = x_{\text{verify}} = x_{\text{count}} \pm \Delta x$
+* **Verification Line:** $x = x_{\mathrm{verify}} = x_{\mathrm{count}} \pm \Delta x$
 
 Direction classification:
-$$\text{Direction} = \text{sgn}\big(x(t_2) - x(t_1)\big) = \begin{cases} \text{Left-to-Right (LR)}, & x(t_2) > x(t_1) \\ \text{Right-to-Left (RL)}, & x(t_2) < x(t_1) \end{cases}$$
+$$\mathrm{Direction} = \mathrm{sgn}\big(x(t_2) - x(t_1)\big) = \begin{cases} \text{Left-to-Right (LR)}, & x(t_2) > x(t_1) \\ \text{Right-to-Left (RL)}, & x(t_2) < x(t_1) \end{cases}$$
 
 ### 2. Multi-Lane Road Carriageways
 When analyzing multi-lane highways or roads with distinct lanes:

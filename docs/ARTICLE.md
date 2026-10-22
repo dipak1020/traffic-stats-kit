@@ -68,7 +68,7 @@ However, consider what happens when traffic queues form at a red light or bottle
 
 `traffic-stats-kit` replaces dynamic learning rates with **Temporal Median Asphalt Modeling**:
 
-$$\mathcal{B}(x, y) = \mathrm{median}_{t \in \mathcal{S}} \Big\{ \mathcal{I}(x, y, t) \Big\}$$
+$$\mathcal{B}(x, y) = \mathrm{median}_{t \in \mathcal{S}} \big[ \mathcal{I}(x, y, t) \big]$$
 
 By sampling 60 to 120 uniformly spaced frames across a temporal window, the median operator guarantees that as long as vehicles occupy a given patch of road for less than 50% of the sample duration, the true asphalt intensity is mathematically recovered with zero vehicle ghosting. Stopped traffic is never memorized.
 
@@ -83,7 +83,7 @@ A single virtual tripwire across a road is notoriously fragile:
 
 To eliminate these artifacts without resorting to deep learning, we implement a **Chronological Dual-Line Verification Protocol**:
 
-$$\mathrm{Pass}_{\mathrm{valid}} \iff \exists \, (t_1 < t_2) : \quad x(t_1) = x_{\mathrm{count}} \quad \land \quad x(t_2) = x_{\mathrm{verify}}$$
+$$\mathrm{Pass}_{\mathrm{valid}} \iff \exists \, (t_1 \lt t_2) : \quad x(t_1) = x_{\mathrm{count}} \quad \land \quad x(t_2) = x_{\mathrm{verify}}$$
 
 A valid passage requires an optical mass to break the Counting Line at $t_1$, and subsequently break the Verification Line at $t_2$. Oscillating shadows fail this condition because they reverse direction or cross both lines simultaneously. Headlamp reflections fail because their spatial luminance distribution fails the ground-contact profile.
 
@@ -176,6 +176,6 @@ When software respects those physical realities, you do not need a 300-watt serv
 ### Project Repository & Documentation
 
 * **Independent Repository:** [`traffic-stats-kit`](https://github.com/dipak1020/traffic-stats-kit)
-* **Technical Documentation:** [`docs/ARTICLE.html`](docs/ARTICLE.html)
+* **Engineering Methodology:** [`docs/APPROACH.md`](docs/APPROACH.md)
 * **Autonomous Replication Guide:** [`docs/AGENTIC_AI_REPLICATION.md`](docs/AGENTIC_AI_REPLICATION.md)
 * **License:** MIT (Code) / CC BY 4.0 (Documentation)
